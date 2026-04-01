@@ -6,16 +6,15 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 11:43:49 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/01 14:59:59 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FLAGTRAP_H
 # define FLAGTRAP_H
-# include "ScavTrap.hpp"
+# include "ClapTrap.hpp"
 
-
-class FlagTrap : public ScavTrap
+class FlagTrap : public ClapTrap
 {
 	public:
 		FlagTrap(void);
