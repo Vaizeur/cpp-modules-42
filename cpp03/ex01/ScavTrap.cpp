@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:50:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 11:32:05 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/01 14:32:01 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ ScavTrap::ScavTrap(void)
 	std::cout << "ScavTrap default constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	this->_name = name; 
 	this->_hitPoints = 100; 
 	this->_energyPoints = 50; 
 	this->_attackDamage = 20;
