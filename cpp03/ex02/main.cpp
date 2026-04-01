@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:31:15 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 11:58:55 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/01 12:00:04 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int main()
 	std::cout << "\n---- ENERGY TEST ----" << std::endl;
 	for (int i = 0; i < 101; i++)
 		d.attack("toto");
+	d.highFivesGuys();
 	std::cout << "\n---- DAMAGE TEST ----" << std::endl;
 	d.takeDamage(60);
 	d.takeDamage(60);
