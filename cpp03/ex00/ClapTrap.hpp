@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:46:04 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/31 20:00:37 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/01 10:35:43 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class ClapTrap
 		int         _hitPoints;
 		int         _energyPoints;
 		int         _attackDamage;
+		bool		check(void);
 	public:
 		ClapTrap(void);
 		ClapTrap(std::string name);
@@ -32,10 +33,14 @@ class ClapTrap
 		int			getHitPoints(void) const;
 		int			getEnergyPoints(void) const;
 		int			getAttackDamage(void) const;
-
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		
+		void		setName(std::string name);
+		void		setHitPoints(unsigned int amount);
+		void		setEnergyPoints(unsigned int amount);
+		void		setAttackDamage(unsigned int amount);
+		void		attack(const std::string& target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
 };
 
 #endif
