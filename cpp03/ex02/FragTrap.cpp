@@ -1,57 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FlagTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 11:58:11 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/01 15:59:07 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 
-FlagTrap::FlagTrap(void)
+FragTrap::FragTrap(void)
 {
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << "FlagTrap default constructor" << std::endl;
+	std::cout << "FragTrap default constructor" << std::endl;
 }
 
-FlagTrap::FlagTrap(std::string name)
+FragTrap::FragTrap(std::string name)
 {
 	this->_name = name;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << "FlagTrap constructor" << std::endl;
+	std::cout << "FragTrap constructor" << std::endl;
 }
 
-FlagTrap &FlagTrap::operator=(const FlagTrap &other)
+FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	this->_name = other.getName();
 	this->_hitPoints = other.getHitPoints();
 	this->_energyPoints = other.getEnergyPoints();
 	this->_attackDamage = other.getAttackDamage();
-	std::cout << "FlagTrap Copy assignment operator " << std::endl;
+	std::cout << "FragTrap Copy assignment operator " << std::endl;
 	return (*this);
 }
 
-FlagTrap::FlagTrap(FlagTrap &other)
+FragTrap::FragTrap(FragTrap &other)
 {
 	this->_name = other.getName();
 	this->_hitPoints = other.getHitPoints();
 	this->_energyPoints = other.getEnergyPoints();
 	this->_attackDamage = other.getAttackDamage();
-	std::cout << "FlagTrap copy constructor" << std::endl;
+	std::cout << "FragTrap copy constructor" << std::endl;
 }
 
-FlagTrap::~FlagTrap()
+FragTrap::~FragTrap()
 {
-	std::cout << "FlagTrap destructor" << std::endl;
+	std::cout << "FragTrap destructor" << std::endl;
 }
 
-void FlagTrap::highFivesGuys(void)
+void FragTrap::highFivesGuys(void)
 {
     std::cout << "FragTrap requests a positive high five! ✋" << std::endl;	
 }

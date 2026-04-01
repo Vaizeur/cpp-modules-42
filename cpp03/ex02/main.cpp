@@ -6,13 +6,13 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:31:15 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 12:00:04 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/01 16:02:48 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
 int main()
@@ -49,7 +49,7 @@ int main()
 	c.takeDamage(60);
 	c.attack("lili");
 	std::cout << "\n---- FLAGTRAP TEST ----" << std::endl;
-	FlagTrap d("riri");
+	FragTrap d("riri");
 
 	std::cout << "\n---- ENERGY TEST ----" << std::endl;
 	for (int i = 0; i < 101; i++)
