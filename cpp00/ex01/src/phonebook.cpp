@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 17:52:51 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/02/23 22:49:03 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/02 09:33:38 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,16 @@ void PhoneBook::addContact(std::string firstName, std::string lastName,
 
 int	PhoneBook::readSingleInput(std::string &str,std::string inputName)
 {
-	std::cout << inputName << " : ";
-	std::getline(std::cin, str);
-	return (std::cin.eof());
+	while (true)
+	{
+		std::cout << inputName << " : ";
+		std::getline(std::cin, str);	
+		if (std::cin.eof())
+			return (1);
+		if (!str.empty())
+			return (0);
+	}
+	return (0);	
 }
 
 void PhoneBook::read()
