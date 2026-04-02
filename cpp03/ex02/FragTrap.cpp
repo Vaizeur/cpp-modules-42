@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 15:59:07 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/02 11:53:25 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ FragTrap::FragTrap(std::string name)
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
+	if (this == &other)
+		return (*this);
 	this->_name = other.getName();
 	this->_hitPoints = other.getHitPoints();
 	this->_energyPoints = other.getEnergyPoints();
