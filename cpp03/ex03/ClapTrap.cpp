@@ -6,14 +6,14 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 11:31:14 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/02 11:58:15 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void) : 
-	_name("NoName") , 
+	_name("DefaultClapTrap") , 
 	_hitPoints(10) , 
 	_energyPoints(10) , 
 	_attackDamage(0)

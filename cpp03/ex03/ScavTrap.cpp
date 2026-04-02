@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:50:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 14:20:09 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/02 11:38:08 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap(void)
 {
-	this->_name = "NoName"; 
+	this->_name = "DefaultScavTrap"; 
 	this->_hitPoints = 100; 
 	this->_energyPoints = 50; 
 	this->_attackDamage = 20;
