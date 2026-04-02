@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:50:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/02 11:38:08 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/02 12:01:58 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ ScavTrap::ScavTrap(const ScavTrap& other)
 
 ScavTrap	 &ScavTrap::operator=(const ScavTrap &other)
 {
+	if (this == &other)
+		return (*this);
 	this->_name = other.getName();
 	this->_hitPoints = other.getHitPoints();
 	this->_energyPoints = other.getEnergyPoints();
 	this->_attackDamage = other.getAttackDamage();
-	
 	std::cout << "ScavTrap Copy assignment operator " << std::endl;
 	return (*this);
 }
