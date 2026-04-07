@@ -8,7 +8,8 @@ SRCS =	main.cpp \
 		Dog.cpp \
 		Cat.cpp \
 		WrongAnimal.cpp \
-		WrongCat.cpp
+		WrongCat.cpp \
+		WrongDog.cpp
 		
 OBJS = $(SRCS:.cpp=.o)
 
