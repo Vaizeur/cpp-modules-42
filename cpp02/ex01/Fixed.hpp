@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:36 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/29 20:31:52 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/07 15:26:58 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ class Fixed
 		Fixed(const Fixed& other);
 		Fixed &operator=(const Fixed &other);
 		~Fixed();
-		friend std::ostream &operator<<(std::ostream &out, const Fixed &c);
 		int		toInt( void ) const;
 		float	toFloat( void ) const;
 		int		getRawBits(void) const;
 		int		getFractionalB(void) const;
 };
 
-
+std::ostream &operator<<(std::ostream &out, const Fixed &c);
 #endif
 
