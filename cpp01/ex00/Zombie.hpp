@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:37:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/02/24 14:01:34 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/09 14:12:58 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 class Zombie
 {
     private:
-        std::string name;
+        std::string _name;
     public:
         void	announce(void);
         void    setName(std::string value);
-        Zombie();
+        Zombie(std::string name);
         ~Zombie();
 };
 
