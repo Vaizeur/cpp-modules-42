@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 10:02:49 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/09 11:36:55 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/09 16:08:27 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void Harl::error(void) {
 void Harl::complain(std::string level)
 {
 	std::pair<std::string, void (Harl::*)()> list[4] = {
-		{"DEBUG", &Harl::debug},
-		{"INFO", &Harl::info},
-		{"WARNING", &Harl::warning},
-		{"ERROR", &Harl::error}
+		std::make_pair("DEBUG",&Harl::debug),
+		std::make_pair("INFO",&Harl::info),
+		std::make_pair("WARNING",&Harl::warning),
+		std::make_pair("ERROR",&Harl::error)
 	};
 	for (size_t i = 0; i < 4; i++)
 	{
