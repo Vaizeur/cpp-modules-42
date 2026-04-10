@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:23:27 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/02 14:37:15 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/10 09:58:28 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define DOG_HPP
 # include <iostream>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
+	private:
+		Brain *_brain;
 	public:
 		Dog(void);
 		Dog(Dog &other);
