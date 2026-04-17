@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 10:02:49 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/03/03 10:31:35 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/17 14:38:25 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ void Harl::complain(std::string level)
 	{
 		case 0:
 			debug();
+			/* fallthrough */
 		case 1 :
 			info();
+			/* fallthrough */
 		case 2 :
 			warning();
+			/* fallthrough */
 		case 3 :
 			error();
 			break;

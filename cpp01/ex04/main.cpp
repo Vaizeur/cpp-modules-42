@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:40:15 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/02/25 09:40:14 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/17 14:42:58 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int main(int argc, char const *argv[])
 	std::string	file	= argv[1];
 	std::string s1 		= argv[2];
 	std::string s2		= argv[3];
-	
+	if (s1.empty())
+	{
+		std::cout << "Empty S1 Args" << std::endl;
+		return (0);	
+	}
 	FileHandler handler(file);
 	if(!handler.openInFile())
 	{
