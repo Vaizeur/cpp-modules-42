@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:58:02 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/02/24 15:24:57 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/20 11:06:57 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Weapon::Weapon(std::string _type) {
 	type = _type;
 }
 
-std::string	Weapon::getType(void) {
+std::string	Weapon::getType(void) const {
 	return (type);
 }
 
