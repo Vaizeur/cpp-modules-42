@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:25 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/20 10:23:34 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/20 14:44:31 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,26 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
-Fixed Fixed::max(Fixed a, Fixed b)
+Fixed Fixed::max(Fixed &a, Fixed &b)
 {
 	return (a.getRawBits() >= b.getRawBits() ? a : b);
+}
+
+Fixed Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a.getRawBits() >= b.getRawBits() ? b : a);
+}
+
+Fixed&  Fixed::max(const Fixed &a, const Fixed &b)
+{
+	Fixed	a_tmp = a;
+	Fixed	b_tmp = b;
+	return (a.getRawBits() >= b.getRawBits() ? a_tmp : b_tmp);
+}
+
+Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+	Fixed	a_tmp = a;
+	Fixed	b_tmp = b;
+	return (a.getRawBits() >= b.getRawBits() ? a_tmp : b_tmp);
 }
