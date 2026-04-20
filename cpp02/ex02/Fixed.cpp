@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:25 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/30 10:35:55 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:23:34 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ Fixed::Fixed(const float value) : _fractionalB(8)
 
 Fixed::Fixed(const Fixed &other)
 {
-	*this = other;
+	this->_value = other.getRawBits();
+	this->_fractionalB = other.getFractionalB();
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &c)
@@ -39,6 +40,8 @@ std::ostream &operator<<(std::ostream &out, const Fixed &c)
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
+	if (this == &other)
+		return (*this);
 	this->_value = other.getRawBits();
 	this->_fractionalB = other.getFractionalB();
 	return (*this);

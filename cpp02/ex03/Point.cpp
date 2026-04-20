@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 10:41:20 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/03/30 16:35:02 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:27:07 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ Point::Point(const Point &other) : _x(other._x), _y(other._y) {}
 
 Point &Point::operator=(const Point &other)
 {
-	(void) other;
+	if (this == &other)
+		return (*this);
 	return (*this);
 }
 

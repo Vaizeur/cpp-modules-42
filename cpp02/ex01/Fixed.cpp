@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:25 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/29 20:38:40 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/20 10:23:18 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ Fixed::Fixed(const float value) : _fractionalB(8)
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	this->_value = other.getRawBits();
+	this->_fractionalB = other.getFractionalB();
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &c)
@@ -44,6 +45,8 @@ std::ostream &operator<<(std::ostream &out, const Fixed &c)
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called " << std::endl;
+	if (this == &other)
+		return (*this);
 	this->_value = other.getRawBits();
 	this->_fractionalB = other.getFractionalB();
 	return (*this);

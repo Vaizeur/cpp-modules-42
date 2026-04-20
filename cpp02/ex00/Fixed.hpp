@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:36 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/29 19:38:33 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/20 10:09:48 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 class Fixed
 {
 	private:
-		static int	f_bits;
-		int			raw_bits;
+		static int	_fracbits;
+		int			_raw_bits;
 	public:
 		Fixed(void);
 		Fixed(const Fixed& other);
