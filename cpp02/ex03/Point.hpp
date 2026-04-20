@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 10:41:23 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/03/30 16:32:26 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:35:13 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class Point
         Fixed getX() const;
         Fixed getY() const;
 };
+
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
 
