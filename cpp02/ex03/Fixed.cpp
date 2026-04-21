@@ -6,15 +6,18 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:25 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/20 10:20:26 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/21 10:24:04 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : _value(0) , _fractionalB(8) {}
+Fixed::Fixed(void) : _value(0) , _fractionalB(8)
+{
+}
 
-Fixed::Fixed(const int value) : _fractionalB(8) {
+Fixed::Fixed(const int value) : _fractionalB(8)
+{
 	_value = value << _fractionalB;
 }
 
@@ -25,8 +28,8 @@ Fixed::Fixed(const float value) : _fractionalB(8)
 
 Fixed::Fixed(const Fixed &other)
 {
-	this->_fractionalB = other.getFractionalB();
 	this->_value = other.getRawBits();
+	this->_fractionalB = other.getFractionalB();
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &c)
@@ -44,7 +47,9 @@ Fixed &Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-Fixed::~Fixed(void) {}
+Fixed::~Fixed(void)
+{
+}
 
 int Fixed::toInt(void) const 
 {
@@ -66,32 +71,32 @@ int		Fixed::getFractionalB(void) const
 	return (this->_fractionalB);
 }
 
-bool 	Fixed::operator==(const Fixed& other)
+bool 	Fixed::operator==(const Fixed& other) const
 {
 	return (this->getRawBits() == other.getRawBits());
 }
 
-bool 	Fixed::operator<(const Fixed& other)
+bool 	Fixed::operator<(const Fixed& other) const
 {
 	return (this->getRawBits() < other.getRawBits());
 }
 
-bool 	Fixed::operator>(const Fixed& other)
+bool 	Fixed::operator>(const Fixed& other) const
 {
 	return (this->getRawBits() > other.getRawBits());
 }
 
-bool 	Fixed::operator<=(const Fixed& other)
+bool 	Fixed::operator<=(const Fixed& other) const
 {
 	return (this->getRawBits() <= other.getRawBits());
 }
 
-bool 	Fixed::operator>=(const Fixed& other)
+bool 	Fixed::operator>=(const Fixed& other) const
 {
 	return (this->getRawBits() >= other.getRawBits());
 }
 
-bool 	Fixed::operator!=(const Fixed& other)
+bool 	Fixed::operator!=(const Fixed& other) const
 {
 	return (this->getRawBits() != other.getRawBits());
 }
@@ -158,7 +163,22 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
-Fixed Fixed::max(Fixed a, Fixed b)
+Fixed& Fixed::max(Fixed &a, Fixed &b)
 {
-	return (a.getRawBits() >= b.getRawBits() ? a : b);
+	return (a > b ? a : b);
+}
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a > b ? b : a);
+}
+
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return (a > b ? b : a);
 }

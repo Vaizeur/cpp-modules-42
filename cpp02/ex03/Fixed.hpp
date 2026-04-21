@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 18:20:36 by vaiz              #+#    #+#             */
-/*   Updated: 2026/03/30 16:36:42 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/21 10:24:13 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ class Fixed
 		float	toFloat( void ) const;
 		int		getRawBits(void) const;
 		int		getFractionalB(void) const;
-
-		friend std::ostream &operator<<(std::ostream &out, const Fixed &c);
-		
-		bool 	operator==(const Fixed& other);
-		bool 	operator<(const Fixed& other);
-		bool 	operator>(const Fixed& other);
-		bool	operator<=(const Fixed& other);
-		bool	operator>=(const Fixed& other);
-		bool	operator!=(const Fixed& other);
+				
+		bool 	operator==(const Fixed& other) const;
+		bool 	operator<(const Fixed& other) const;
+		bool 	operator>(const Fixed& other) const;
+		bool	operator<=(const Fixed& other) const;
+		bool	operator>=(const Fixed& other) const;
+		bool	operator!=(const Fixed& other) const;
 
 		Fixed	operator+(const Fixed& other);
 		Fixed	operator-(const Fixed& other);
@@ -52,9 +50,14 @@ class Fixed
 		Fixed	operator--();
    		Fixed	operator--(int);
 
-		static Fixed max(Fixed a, Fixed b);
+		static Fixed& max(Fixed &a, Fixed &b);
+		static Fixed& min(Fixed &a, Fixed &b);
+
+		static const Fixed& max(const Fixed &a, const Fixed &b);
+		static const Fixed& min(const Fixed &a, const Fixed &b);
 };
 
+std::ostream &operator<<(std::ostream &out, const Fixed &c);
 
 #endif
 
