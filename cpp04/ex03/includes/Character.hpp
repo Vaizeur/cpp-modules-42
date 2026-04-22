@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:30:08 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/20 11:26:31 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:29:31 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class Character : public ICharacter
 {
 	private:
 		std::string _name;
+		AMateria	*_slot[4];
 	public:
 		Character(void);
 		Character(std::string name);

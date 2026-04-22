@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/10 15:15:08 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 10:42:28 by odanyliu         ###   ########.fr       */
+/*   Created: 2026/04/21 13:26:31 by odanyliu          #+#    #+#             */
+/*   Updated: 2026/04/21 13:30:13 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
-# include "AMateria.hpp"
-# include <iostream>
+#include "../includes/MateriaSource.hpp"
 
-class Cure : public virtual AMateria
+MateriaSource::MateriaSource()
 {
-	public:
-		Cure(void);
-		Cure(Cure &other);
-		Cure& operator=(Cure &other);
-		std::string const & getType() const;
-		~Cure();
-		Cure* clone() const;
-		void use(ICharacter& target);
-};
+}
 
-#endif
+MateriaSource::~MateriaSource()
+{
+}
+
+

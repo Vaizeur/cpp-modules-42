@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:27:47 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/10 15:46:03 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/21 13:20:31 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ICHARACTER_HPP
 # include "AMateria.hpp"
 # include <string>
+
+class AMateria;
 
 class ICharacter
 {

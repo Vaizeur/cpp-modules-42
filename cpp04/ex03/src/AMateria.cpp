@@ -1,48 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 11:30:42 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:21:33 by odanyliu         ###   ########.fr       */
+/*   Created: 2026/04/21 11:33:11 by odanyliu          #+#    #+#             */
+/*   Updated: 2026/04/21 13:21:12 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Ice.hpp"
+#include "../includes/AMateria.hpp"
 
-Ice::Ice(void)
-{
-	_type = "ice";
-}
+AMateria::AMateria() : _type("no_type") {}
 
-Ice::Ice(Ice &other) : AMateria(other) { }
+AMateria::AMateria(AMateria &other) : _type(other._type) {}
 
-Ice& Ice::operator=(Ice &other)
+AMateria& AMateria::operator=(AMateria &other)
 {
 	if (this == &other)
 		return (*this);
-	_type = other.getType(); // USELESS
+	this->_type = other._type;    
 	return (*this);
 }
 
-std::string const& Ice::getType() const 
-{
-	return (_type);
+AMateria::AMateria(std::string const &type) : _type(type) { }
+
+std::string	const & AMateria::getType() const {
+	return _type;
 }
 
-Ice::~Ice()
-{
-	// TODO : A FAIRE
-}
-
-Ice* Ice::clone() const
-{
-	return (new Ice());
-}
-
-void Ice::use(ICharacter& target)
-{
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-}
+AMateria::~AMateria(){}
