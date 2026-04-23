@@ -6,23 +6,23 @@
 /*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 10:50:32 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/23 15:01:19 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/23 16:09:43 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Character.hpp"
 
-Character::Character(void) : _name("no_name") {
+Character::Character(void) : _name("no_name"), _floorSize(0) {
 	for (size_t i = 0; i < 4; i++)
 		_slot[i] = NULL;
 }
 
-Character::Character(std::string name) : _name(name) {
+Character::Character(std::string name) : _name(name) , _floorSize(0) {
 	for (size_t i = 0; i < 4; i++)
 		_slot[i] = NULL;
 }
 
-Character::Character(const Character &other)
+Character::Character(const Character &other) : _floorSize(0)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -32,7 +32,6 @@ Character::Character(const Character &other)
 	}
 	this->_name = other._name;
 }
-
 Character& Character::operator=(const Character &other)
 {
 	if (this == &other)
@@ -41,8 +40,9 @@ Character& Character::operator=(const Character &other)
 	{
 		if (this->_slot[i])
 			delete this->_slot[i];
+		this->_slot[i] = NULL;
 		if (other._slot[i])
-			this->_slot[i] = (other._slot[i])->clone();
+			this->_slot[i] = other._slot[i]->clone();
 	}
 	this->_name = other._name;
 	return (*this);
@@ -55,6 +55,8 @@ Character::~Character()
 		if (this->_slot[i])
 			delete this->_slot[i];
 	}
+	for (int j = 0; j < this->_floorSize; j++)
+		delete this->_floor[j];
 }
 
 void Character::equip(AMateria* m)
@@ -74,7 +76,10 @@ void Character::unequip(int idx)
 	if (idx < 0 || idx > 3)
 		return ;	
 	if (this->_slot[idx])
+	{
+		this->_floor[this->_floorSize++] = this->_slot[idx];
 		this->_slot[idx] = NULL;
+	}
 }
 
 void Character::use(int idx, ICharacter& target)
