@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FlagTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 15:58:37 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:02:34 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class FragTrap : public ClapTrap
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);
-		FragTrap(FragTrap &other);
+		FragTrap(const FragTrap &other);
         FragTrap &operator=(const FragTrap &other);
 		~FragTrap();
 		void highFivesGuys(void);

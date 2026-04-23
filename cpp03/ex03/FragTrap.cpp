@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/02 12:01:49 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:25:25 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ FragTrap::FragTrap(void)
 	std::cout << "FragTrap default constructor" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_name = name;
 	this->_energyPoints = 100;
@@ -40,7 +40,7 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 	return (*this);
 }
 
-FragTrap::FragTrap(FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
 	this->_name = other.getName();
 	this->_hitPoints = other.getHitPoints();

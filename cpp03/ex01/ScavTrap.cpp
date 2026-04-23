@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:50:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 14:32:01 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 09:56:51 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ ScavTrap::~ScavTrap()
 	std::cout << "ScavTrap destructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
-	this->_name = other.getName();
-	this->_hitPoints = other.getHitPoints();
-	this->_energyPoints = other.getEnergyPoints();
-	this->_attackDamage = other.getAttackDamage();
 	std::cout << "ScavTrap copy constructor" << std::endl;
 }
 

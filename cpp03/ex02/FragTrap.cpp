@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:51:11 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/02 11:53:25 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:10:57 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 FragTrap::FragTrap(void)
 {
 	this->_energyPoints = 100;
+	this->_hitPoints = 100;
 	this->_attackDamage = 30;
 	std::cout << "FragTrap default constructor" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
+	std::cout << "FragTrap constructor" << std::endl;
 	this->_name = name;
 	this->_energyPoints = 100;
+	this->_hitPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << "FragTrap constructor" << std::endl;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
@@ -39,12 +41,8 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 	return (*this);
 }
 
-FragTrap::FragTrap(FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
-	this->_name = other.getName();
-	this->_hitPoints = other.getHitPoints();
-	this->_energyPoints = other.getEnergyPoints();
-	this->_attackDamage = other.getAttackDamage();
 	std::cout << "FragTrap copy constructor" << std::endl;
 }
 
