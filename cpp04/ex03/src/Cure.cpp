@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:30:42 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:11:22 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:15:42 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ Cure::Cure(void)
 	_type = "cure";
 }
 
-Cure::Cure(Cure &other)  : AMateria(other) {
+Cure::Cure(const Cure &other)  : AMateria(other) {
 	
 }
 
-Cure& Cure::operator=(Cure &other)
+Cure& Cure::operator=(const Cure &other)
 {
 	if (this == &other)
 		return (*this);

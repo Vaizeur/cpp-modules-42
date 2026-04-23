@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:33:11 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:21:12 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:16:13 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 AMateria::AMateria() : _type("no_type") {}
 
-AMateria::AMateria(AMateria &other) : _type(other._type) {}
+AMateria::AMateria(const AMateria &other) : _type(other._type) {}
 
-AMateria& AMateria::operator=(AMateria &other)
+AMateria& AMateria::operator=(const AMateria &other)
 {
 	if (this == &other)
 		return (*this);
@@ -28,6 +28,10 @@ AMateria::AMateria(std::string const &type) : _type(type) { }
 
 std::string	const & AMateria::getType() const {
 	return _type;
+}
+
+void AMateria::use(ICharacter& target) {
+	(void) target;
 }
 
 AMateria::~AMateria(){}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:30:42 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:21:33 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:16:38 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ Ice::Ice(void)
 	_type = "ice";
 }
 
-Ice::Ice(Ice &other) : AMateria(other) { }
+Ice::Ice(const Ice &other) : AMateria(other) { }
 
-Ice& Ice::operator=(Ice &other)
+Ice& Ice::operator=(const Ice &other)
 {
 	if (this == &other)
 		return (*this);

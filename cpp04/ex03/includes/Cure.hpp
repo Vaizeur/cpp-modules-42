@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:15:08 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 10:42:28 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:15:07 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ class Cure : public virtual AMateria
 {
 	public:
 		Cure(void);
-		Cure(Cure &other);
-		Cure& operator=(Cure &other);
+		Cure(const Cure &other);
+		Cure& operator=(const Cure &other);
 		std::string const & getType() const;
 		~Cure();
 		Cure* clone() const;

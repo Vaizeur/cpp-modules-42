@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 13:26:31 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:30:13 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:48:19 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ MateriaSource::MateriaSource()
 MateriaSource::~MateriaSource()
 {
 }
+
+
 
 

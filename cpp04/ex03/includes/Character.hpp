@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:30:08 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 11:29:31 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:13:45 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Character : public ICharacter
 	public:
 		Character(void);
 		Character(std::string name);
-		Character(Character	&other);
-		Character& operator=(Character &other);
+		Character(const Character	&other);
+		Character& operator=(const Character &other);
 		
 		std::string const & getName() const;
 		void equip(AMateria* m);

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:25:10 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/21 13:38:28 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:38:08 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/MateriaSource.hpp"
-#include "includes/Ice.hpp"
-#include "includes/Cure.hpp"
-#include "includes/Character.hpp"
+#include "../includes/MateriaSource.hpp"
+#include "../includes/Ice.hpp"
+#include "../includes/Cure.hpp"
+#include "../includes/Character.hpp"
 
 int main()
 {
