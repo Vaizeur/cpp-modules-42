@@ -6,7 +6,7 @@
 /*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 10:50:32 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/23 12:13:54 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/23 15:01:19 by vaiz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ Character::Character(const Character &other)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		if (this->_slot[i])
-			delete this->_slot[i];
 		this->_slot[i] = NULL;		
 		if (other._slot[i])
 			this->_slot[i] = (other._slot[i])->clone();
@@ -86,4 +84,9 @@ void Character::use(int idx, ICharacter& target)
 	if (!this->_slot[idx])
 		return ;
 	(this->_slot[idx])->use(target);
+}
+
+std::string const&Character::getName() const
+{
+	return (this->_name);
 }
