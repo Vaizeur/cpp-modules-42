@@ -3,19 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 11:25:10 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/23 16:31:01 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/04/24 10:31:23 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../includes/AMateria.hpp"
-#include "../includes/Ice.hpp"
-#include "../includes/Cure.hpp"
-#include "../includes/Character.hpp"
-#include "../includes/MateriaSource.hpp"
-#include <iostream>
 
 #include "../includes/AMateria.hpp"
 #include "../includes/Ice.hpp"
