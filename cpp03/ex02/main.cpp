@@ -6,58 +6,85 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:31:15 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/01 16:02:48 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/01 10:17:27 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
-#include <iostream>
 
 int main()
 {
-	std::cout << "---- CLAPTRAP TEST ----" << std::endl;
+    std::cout << "\n===== CLAPTRAP TEST =====\n" << std::endl;
 
-	ClapTrap a("lili");
-	ClapTrap b("toto");
+    ClapTrap a("CL4P");
 
-	a.attack("toto");
-	b.takeDamage(3);
-	b.beRepaired(2);
+    a.attack("enemy");
+    a.takeDamage(5);
+    a.beRepaired(3);
+    a.attack("enemy2");
 
-	b.attack("lili");
-	a.takeDamage(4);
-	a.beRepaired(1);
 
-	std::cout << "\n---- SCAVTRAP TEST ----" << std::endl;
+    std::cout << "\n===== SCAVTRAP TEST =====\n" << std::endl;
 
-	ScavTrap c("protector");
+    ScavTrap b("SC4V");
 
-	c.attack("lili");
-	a.takeDamage(20);
+    b.attack("target");
+    b.takeDamage(30);
+    b.beRepaired(10);
+    b.guardGate();
 
-	c.beRepaired(10);
-	c.guardGate();
 
-	std::cout << "\n---- ENERGY TEST ----" << std::endl;
-	for (int i = 0; i < 50; i++)
-		c.attack("toto");
-	std::cout << "\n---- DAMAGE TEST ----" << std::endl;
+    std::cout << "\n===== FRAGTRAP TEST =====\n" << std::endl;
 
-	c.takeDamage(60);
-	c.takeDamage(60);
-	c.attack("lili");
-	std::cout << "\n---- FLAGTRAP TEST ----" << std::endl;
-	FragTrap d("riri");
+    FragTrap c("FR4G");
 
-	std::cout << "\n---- ENERGY TEST ----" << std::endl;
-	for (int i = 0; i < 101; i++)
-		d.attack("toto");
-	d.highFivesGuys();
-	std::cout << "\n---- DAMAGE TEST ----" << std::endl;
-	d.takeDamage(60);
-	d.takeDamage(60);
-	d.attack("lili");
-	return 0;
+    c.attack("monster");
+    c.takeDamage(20);
+    c.beRepaired(15);
+    c.highFivesGuys();
+
+    std::cout << "\n===== COPY TEST =====\n" << std::endl;
+
+    FragTrap copy(c);
+    copy.attack("copy_target");
+
+    FragTrap assign("Temp");
+    assign = c;
+    assign.attack("assign_target");
+
+
+    std::cout << "\n===== HEAP TEST =====\n" << std::endl;
+
+    ClapTrap* h1 = new ClapTrap("HeapClap");
+    ScavTrap* h2 = new ScavTrap("HeapScav");
+    FragTrap* h3 = new FragTrap("HeapFrag");
+
+    h1->attack("enemy");
+    h2->attack("enemy");
+    h3->attack("enemy");
+
+    delete h1;
+    delete h2;
+    delete h3;
+
+    std::cout << "\n===== ENERGY TEST =====\n" << std::endl;
+
+    ClapTrap energy("Battery");
+
+    for (int i = 0; i < 12; i++)
+        energy.attack("dummy");
+    std::cout << "\n===== DAMAGE TEST =====\n" << std::endl;
+
+    ClapTrap dead("Zombie");
+
+    dead.takeDamage(200);
+    dead.attack("target");
+    dead.beRepaired(10);
+
+    std::cout << "\n===== END TEST =====\n" << std::endl;
+
+    return 0;
 }

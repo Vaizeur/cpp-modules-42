@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:46:04 by vaiz              #+#    #+#             */
-/*   Updated: 2026/04/01 10:47:58 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/01 10:18:38 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap& other);
 		ClapTrap &operator=(const ClapTrap &other);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
 		std::string getName(void) const;
 		int			getHitPoints(void) const;

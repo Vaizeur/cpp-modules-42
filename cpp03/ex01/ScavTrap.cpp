@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vaiz <vaiz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:50:00 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/23 09:56:51 by vaiz             ###   ########.fr       */
+/*   Updated: 2026/05/01 10:22:38 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ ScavTrap	 &ScavTrap::operator=(const ScavTrap &other)
 	std::cout << "ScavTrap Copy assignment operator " << std::endl;
 	return (*this);
 }
-
 
 void ScavTrap::guardGate()
 {
