@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:31:54 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/10 11:41:35 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:08:02 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ Cat::Cat(void) {
 	std::cout << "Cat Constructor" << std::endl;
 }
 
-Cat::Cat(Cat &other)
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	this->_brain = new Brain(*other._brain);
 	this->_type = other._type;
 	std::cout << "Cat copy constructor" << std::endl;
 }
-Cat& Cat::operator=(Cat &other)
+Cat& Cat::operator=(const Cat &other)
 {
 	std::cout << "Cat assignement operator" << std::endl;
 	if (this == &other)
@@ -44,4 +44,13 @@ Cat::~Cat() {
 void Cat::makeSound() const
 {
 	std::cout << "Miaou" << std::endl;
+}
+
+void Cat::addIdea(std::string &value)
+{
+	_brain->addIdea(value);
+}
+
+void Cat::printIdea() const {
+	_brain->printIdea();
 }

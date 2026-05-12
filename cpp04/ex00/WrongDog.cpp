@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:31:54 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/07 12:54:51 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 10:36:12 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ WrongDog::WrongDog(void) {
 	std::cout << "WrongDog Constructor" << std::endl;
 }
 
-WrongDog::WrongDog(WrongDog &other)
+WrongDog::WrongDog(const WrongDog &other) : WrongAnimal(other)
 {
 	this->_type = other._type;
 	std::cout << "WrongDog copy constructor" << std::endl;
 }
-WrongDog& WrongDog::operator=(WrongDog &other)
+WrongDog& WrongDog::operator=(const WrongDog &other)
 {
 	std::cout << "WrongDog assignement operator" << std::endl;
 	if (this == &other)

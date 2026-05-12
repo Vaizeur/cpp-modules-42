@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:31:54 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/10 09:58:04 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:15:15 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ Dog::Dog(void) {
 	std::cout << "Dog Constructor" << std::endl;
 }
 
-Dog::Dog(Dog &other)
+Dog::Dog(const Dog &other) : AAnimal(other)
 {
 	this->_brain = new Brain(*other._brain);
 	this->_type = other._type;
 	std::cout << "Dog copy constructor" << std::endl;
 }
-Dog& Dog::operator=(Dog &other)
+Dog& Dog::operator=(const Dog &other)
 {
 	std::cout << "Dog assignement operator" << std::endl;
 	if (this == &other)
@@ -43,4 +43,13 @@ Dog::~Dog() {
 void Dog::makeSound() const
 {
 	std::cout << "Wouf" << std::endl;
+}
+
+void Dog::addIdea(std::string &value)
+{
+	_brain->addIdea(value);
+}
+
+void Dog::printIdea() const {
+	_brain->printIdea();
 }

@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:31:54 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/02 14:37:02 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 10:35:27 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ Dog::Dog(void) {
 	std::cout << "Dog Constructor" << std::endl;
 }
 
-Dog::Dog(Dog &other)
+Dog::Dog(const Dog &other) : Animal(other)
 {
 	this->_type = other._type;
 	std::cout << "Dog copy constructor" << std::endl;
 }
-Dog& Dog::operator=(Dog &other)
+
+Dog& Dog::operator=(const Dog &other)
 {
 	std::cout << "Dog assignement operator" << std::endl;
 	if (this == &other)

@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:31:54 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/02 15:07:46 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 10:30:58 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ WrongAnimal::WrongAnimal(void) : _type("undefined") {
 	std::cout << "WrongAnimal Constructor" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal &other)
+WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
 	this->_type = other._type;
 	std::cout << "WrongAnimal copy constructor" << std::endl;
 }
-WrongAnimal& WrongAnimal::operator=(WrongAnimal &other)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other)
 {
 	std::cout << "WrongAnimal assignement operator" << std::endl;
 	if (this == &other)

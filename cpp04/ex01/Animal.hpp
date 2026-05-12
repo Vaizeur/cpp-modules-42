@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:23:27 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/04/02 14:45:59 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:07:04 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ class Animal
 		std::string _type;
 	public:
 		Animal(void);
-		Animal(Animal &other);
-		Animal& operator=(Animal &other);
+		Animal(const Animal &other);
+		Animal& operator=(const Animal &other);
 		virtual ~Animal();
 		std::string getType(void) const;
 		virtual void makeSound(void) const;
+		virtual void addIdea(std::string &value);
+		virtual void printIdea(void) const;
 };
 
 #endif
