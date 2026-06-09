@@ -6,13 +6,14 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 09:48:32 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/09 10:15:35 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:38:37 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
-#include <string>
+# include <string>
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -25,6 +26,7 @@ class Form
 		int					_requiredExec;
 	public:
 		Form();
+		Form(int requiredSign,int requiredExec);
 		Form(const Form &other);
 		Form& operator=(const Form &other);
 		~Form();
@@ -38,7 +40,7 @@ class Form
 		
 		class GradeTooHighException : public std::exception 
 		{
-				char const* what() const throw();		
+			char const* what() const throw();		
 		};
 		
 		class GradeTooLowException : public std::exception 

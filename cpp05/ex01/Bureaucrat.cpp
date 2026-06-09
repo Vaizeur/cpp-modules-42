@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 10:04:16 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/09 10:16:48 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:13:39 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,16 @@ void Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(Form &form)
+{
+	try{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e){
+		std::cout << _name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &c)
 {
