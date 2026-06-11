@@ -12,30 +12,67 @@
 
 #include "Bureaucrat.hpp"
 
-int main(void)
+int main()
 {
-	try {
-		Bureaucrat crat(151);
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << '\n';
-	}
-
+	std::cout << "========== VALID OBJECTS ==========\n";
 	try
 	{
-		Bureaucrat crat(12, "bob");
-		std::cout << crat << std::endl;
-		for (size_t i = 0; i < 150; i++)
-		{
-			std::cout << crat << std::endl;
-			crat.incrementGrade();
-		}
+		Bureaucrat boss(1, "Boss");
+		Bureaucrat employee( 75,"Employee");
+		Bureaucrat intern(150,"intern");
+
+		Form contract("Contract", 100, 50);
+		Form secret("SecretForm", 10, 5);
+
+		std::cout << boss << std::endl;
+		std::cout << employee << std::endl;
+		std::cout << intern << std::endl;
+
+		std::cout << contract << std::endl;
+		std::cout << secret << std::endl;
+
+		std::cout << "\n========== SIGN SUCCESS ==========\n";
+		employee.signForm(contract);
+		std::cout << contract << std::endl;
+
+		std::cout << "\n========== SIGN FAILURE ==========\n";
+		intern.signForm(secret);
+		std::cout << secret << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Unexpected exception: " << e.what() << std::endl;
 	}
-	
-	
+
+	std::cout << "\n========== INVALID FORM (HIGH) ==========\n";
+	try
+	{
+		Form invalid("InvalidHigh", 0, 50);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "\n========== INVALID FORM (LOW) ==========\n";
+	try
+	{
+		Form invalid("InvalidLow", 151, 50);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "\n========== INVALID EXEC GRADE ==========\n";
+	try
+	{
+		Form invalid("InvalidExec", 50, 151);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 	return 0;
 }

@@ -24,9 +24,10 @@ class Form
 		bool				_signed;
 		int					_requiredSign;
 		int					_requiredExec;
+		static	void		checkGrade(int  grade);
 	public:
 		Form();
-		Form(int requiredSign,int requiredExec);
+		Form(std::string name, int requiredSign,int requiredExec);
 		Form(const Form &other);
 		Form& operator=(const Form &other);
 		~Form();

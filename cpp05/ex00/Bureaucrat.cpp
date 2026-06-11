@@ -12,12 +12,10 @@
 
 #include "Bureaucrat.hpp"
 
-// Constructor
-
 Bureaucrat::Bureaucrat(void) : _grade(150), _name("no_name") { }
 
 Bureaucrat::Bureaucrat(int grade) : _name("no_name")
-{ 
+{
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
