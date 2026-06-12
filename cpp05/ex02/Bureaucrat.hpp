@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 10:04:24 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/09 10:16:26 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/12 09:21:53 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Bureaucrat
 	public:
 		Bureaucrat(void);
 		Bureaucrat(int grade);
-		Bureaucrat(int grade, std::string name);
+		Bureaucrat(std::string name, int grade);
 		Bureaucrat(std::string name);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat &operator=(const Bureaucrat &other);

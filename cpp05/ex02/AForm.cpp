@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 09:51:10 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/09 16:49:56 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/12 09:27:42 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ bool AForm::isSigned() const{
 	return _signed;
 }
 
+void AForm::setSigned(){
+	_signed = true;
+}
+
 int AForm::getRequiredGradeSign() const {
 	return _requiredSign;
 }
@@ -66,6 +70,8 @@ void	AForm::beSigned(Bureaucrat &bc)
 {
 	if (bc.getGrade() > _requiredSign)
 		throw GradeTooLowException();
+	if (_signed)
+		throw FormAlreadySigned();	
 	_signed = true;
 }
 
@@ -77,6 +83,9 @@ char const* AForm::GradeTooLowException::what() const throw() {
 	return "AFormException - Grade is too low";
 }
 
+char const* AForm::FormAlreadySigned::what() const throw(){
+	return "AFormException - Form is already signed";
+}
 
 AForm::ExecuteException::ExecuteException(const std::string &message) : _message(message){}
 

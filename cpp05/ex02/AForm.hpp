@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 09:48:32 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/09 16:38:37 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/12 09:26:26 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,18 @@ class AForm
 		void				beSigned(Bureaucrat &bc);
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 		void				canExecute(const Bureaucrat& executor) const;
-
-		class GradeTooHighException : public std::exception 
-		{
+		void				setSigned();
+		
+		class GradeTooHighException : public std::exception {
 			char const* what() const throw();
 		};
-		
-		class GradeTooLowException : public std::exception 
-		{
-    		char const* what() const throw();		
+		class GradeTooLowException : public std::exception {
+			char const* what() const throw();
 		};
-
-		class ExecuteException : public std::exception
-		{
+		class FormAlreadySigned : public std::exception {
+			char const* what() const throw();
+		};
+		class ExecuteException : public std::exception {
 			private :
 				std::string _message;
 			public :
