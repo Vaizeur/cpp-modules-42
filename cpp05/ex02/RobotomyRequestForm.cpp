@@ -27,8 +27,7 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const
 {
 	canExecute(executor);
-	std::time_t t = std::time(0);
-	if (t % 2 == 0)
+	if (std::rand() % 2 == 0)
 		std::cout << _target << " robotomy failed" << std::endl;
 	else
 		std::cout << _target << " has been robotomized" << std::endl;

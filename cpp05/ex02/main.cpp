@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 11:29:28 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/12 09:23:54 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/12 10:30:49 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int main(void)
 {
+	std::srand(std::time(NULL));
 	std::cout << "\n========== BUREAUCRATS ==========\n" << std::endl;
 
 	Bureaucrat boss("Boss", 1);
