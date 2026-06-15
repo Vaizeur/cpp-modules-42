@@ -7,6 +7,7 @@
 
 class ScalarConverter
 {
+	//TODO : FAIRE LA FORM CANO...
 	public:
 		void static convert(const std::string &value);
 };
