@@ -1,6 +1,14 @@
 #include "ScalarConverter.hpp"
-#include "struct.h"
 
+ScalarConverter::ScalarConverter(){}
+ScalarConverter::~ScalarConverter(){}
+ScalarConverter::ScalarConverter(ScalarConverter const &other) {
+	(void) other;
+}
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
+	(void) other;
+	return *this;
+}
 
 bool validFormat(const std::string& value)
 {
@@ -41,15 +49,74 @@ bool validFormat(const std::string& value)
 	return (numberCheck && it == value.end());
 }
 
+void printValue(
+	char	c, bool cError,
+	int		i, bool iError,
+	float	f, bool fError,
+	double	d, bool dError)
+{
+	if (cError)
+		std::cout << "char: impossible" << std::endl;
+	else if (c < 32 || c > 126)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << c << "'" << std::endl;
+
+	if (iError)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << i << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+
+	if (fError)
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << f << "f" << std::endl;
+
+	if (dError)
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << d << std::endl;
+}
+
+
+void handleChar(char c)
+{
+	printValue(c,false,static_cast<int>(c),false,static_cast<float>(c),false, static_cast<double>(c),false);
+}
+
+void handleNumber(const std::string& value)
+{
+	double d = std::strtod(value.c_str(), NULL);
+
+	bool cError = std::isnan(d) || std::isinf(d) || d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max();
+	bool iError = std::isnan(d) || std::isinf(d) || d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max();
+	bool fError = std::isinf(d) || d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max();
+	bool dError = std::isinf(d) || d < -std::numeric_limits<double>::max() || d > std::numeric_limits<double>::max();
+
+	printValue(
+		static_cast<char>(d), cError,
+		static_cast<int>(d), iError,
+		static_cast<float>(d), fError,
+		d, dError
+	);
+}
+
+void handleFloat(const std::string& value)
+{
+	const std::string newValue = value.substr(0, value.length() - 1);
+	handleNumber(newValue);
+}
+
 void ScalarConverter::convert(const std::string &value) {
-	
-	//TokenResult result;
-	
 	if (!validFormat(value)){
-		std::cout << "Erreur de format" << std::endl;
+		printValue('0', true, 0, true, 0, true, 0, true);
 		return ;
 	}
-	//result = parseValue();
-
-	//printConvert(result);
+	if (value.length() == 1 && !std::isdigit(value[0]))
+		handleChar(value[0]);
+	else if (value[value.length() - 1] == 'f')
+		handleFloat(value);
+	else
+		handleNumber(value);
 }

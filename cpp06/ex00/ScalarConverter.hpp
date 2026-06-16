@@ -4,10 +4,17 @@
 # include <iostream>
 # include <cstdlib>
 # include <string>
+# include <iomanip>
+# include <cmath>
+# include <limits>
 
 class ScalarConverter
 {
-	//TODO : FAIRE LA FORM CANO...
+	private:
+		ScalarConverter();
+		ScalarConverter(ScalarConverter const &other);
+		~ScalarConverter();
+		ScalarConverter	&operator=(ScalarConverter const &other);
 	public:
 		void static convert(const std::string &value);
 };
