@@ -10,12 +10,26 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
 	return *this;
 }
 
-bool validFormat(const std::string& value)
+bool	isPseudoLiteral(const std::string& value) {
+	const std::string lists[6] = {
+		"-inf", "+inf", "nan",
+		"-inff", "+inff", "nanf"
+	};
+	for (int i = 0; i < 6; i++) {
+		if (value == lists[i])
+			return true;
+	}
+	return false;
+}
+
+bool	validFormat(const std::string& value)
 {
 	bool	comaCheck = false;
 	bool	signCheck = false;
 	bool	numberCheck = false;
 
+	if (isPseudoLiteral(value))
+		return true;
 	if (value.length() == 1 && !std::isdigit(value[0]))
 		return true;	
 	std::string::const_iterator it = value.begin();
@@ -49,7 +63,7 @@ bool validFormat(const std::string& value)
 	return (numberCheck && it == value.end());
 }
 
-void printValue(
+void	printValue(
 	char	c, bool cError,
 	int		i, bool iError,
 	float	f, bool fError,
@@ -80,12 +94,12 @@ void printValue(
 }
 
 
-void handleChar(char c)
+void	handleChar(char c)
 {
 	printValue(c,false,static_cast<int>(c),false,static_cast<float>(c),false, static_cast<double>(c),false);
 }
 
-void handleNumber(const std::string& value)
+void	handleNumber(const std::string& value)
 {
 	double d = std::strtod(value.c_str(), NULL);
 
@@ -102,10 +116,24 @@ void handleNumber(const std::string& value)
 	);
 }
 
-void handleFloat(const std::string& value)
+void	handleFloat(const std::string& value)
 {
 	const std::string newValue = value.substr(0, value.length() - 1);
 	handleNumber(newValue);
+}
+
+void	handlePseudoLiteral(const std::string& value)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	if (value == "-inf" || value == "+inf" || value == "nan")
+	{
+		std::cout << "float: " << value << "f" << std::endl;
+		std::cout << "double: " << value << std::endl;
+		return;
+	}
+	std::cout << "float: " << value << std::endl;
+	std::cout << "double: " << value.substr(0, value.length() - 1) << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &value) {
@@ -113,7 +141,9 @@ void ScalarConverter::convert(const std::string &value) {
 		printValue('0', true, 0, true, 0, true, 0, true);
 		return ;
 	}
-	if (value.length() == 1 && !std::isdigit(value[0]))
+	if (isPseudoLiteral(value))
+		handlePseudoLiteral(value);
+	else if (value.length() == 1 && !std::isdigit(value[0]))
 		handleChar(value[0]);
 	else if (value[value.length() - 1] == 'f')
 		handleFloat(value);
