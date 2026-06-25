@@ -6,7 +6,7 @@
 /*   By: odanyliu <odanyliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 09:48:32 by odanyliu          #+#    #+#             */
-/*   Updated: 2026/06/12 09:26:26 by odanyliu         ###   ########.fr       */
+/*   Updated: 2026/06/25 10:40:34 by odanyliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AFORM_HPP
 # include <string>
 # include "Bureaucrat.hpp"
+# include <cstdlib>
 
 class Bureaucrat;
 
