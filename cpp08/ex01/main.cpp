@@ -131,8 +131,8 @@ static void bigNumbersTest()
     for (int i = 0; i < 10000; ++i){
         sp.addNumber(std::rand());
     }
-    std::cout << sp.shortestSpan() << std::endl;
-    std::cout << sp.longestSpan() << std::endl;
+    std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest span : " << sp.longestSpan() << std::endl;
 }
 int main()
 {
