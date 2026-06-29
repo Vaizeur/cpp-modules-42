@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = ex02
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -23,6 +23,4 @@ fclean: clean
 
 re: fclean all
 
-run : re
-	./$(NAME)
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re
