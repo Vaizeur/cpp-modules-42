@@ -1,10 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-
 BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _currentLine(other._currentLine), _exchangeMap(other._exchangeMap) {}
@@ -33,6 +28,8 @@ void BitcoinExchange::init() {
 }
 
 void BitcoinExchange::parseLine() {
+	if (_currentLine == "date,exchange_rate")
+		return ;
 	size_t pos = _currentLine.find(',');
 	if (pos == std::string::npos)
 		throw BitcoinExchangeException("Error: in data.csv file => " + _currentLine);
@@ -44,7 +41,7 @@ void BitcoinExchange::parseLine() {
 	}
 	const std::string value = _currentLine.substr(pos + 1);
 	try {
-		checkValue(value);
+		checkValue(value, INT_MAX);
 	} catch (std::exception &e) {
 		throw BitcoinExchangeException("Error: value in data.csv file => " + _currentLine);
 	}
@@ -65,17 +62,19 @@ void BitcoinExchange::process() {
 }
 
 void BitcoinExchange::processLine() {
-	std::string date;
-	std::string value;
-
 	size_t pos = _currentLine.find('|');
 	if (pos == std::string::npos)
 		throw BitcoinExchangeException("Error: bad input => " + _currentLine);
-	date = _currentLine.substr(0, pos);
-	value = _currentLine.substr(pos + 1);
+	std::string date = _currentLine.substr(0, pos);
+	const std::string value = _currentLine.substr(pos + 1);
 
 	checkDate(date);
-	checkValue(value);
+	checkValue(value, 1000);
+	float floatValue;
+
+	date = trimLine(date);
+	std::istringstream(value) >> floatValue;
+	std::cout << date << " => " << floatValue << " = "<< getExchangeValue(date) * floatValue << std::endl;
 }
 
 void BitcoinExchange::checkDate(const std::string &date) const {
@@ -102,7 +101,13 @@ void BitcoinExchange::checkDate(const std::string &date) const {
 	}
 	if (month < 1 || month > 12 || day < 1 || day > 31)
 		throw BitcoinExchangeException("Error: bad input => " + _currentLine);
-	if (day > calendarMap.find(month)->second)
+	if (month == 2)
+	{
+		bool leapYear = ((year % 400 == 0) && (year % 4 == 0 && year % 100 != 0));
+		if (day > calendarMap.find(month)->second + (leapYear ? 1 : 0 ))
+			throw BitcoinExchangeException("Error: bad input => " + _currentLine);
+	}
+	else if (day > calendarMap.find(month)->second)
 		throw BitcoinExchangeException("Error: bad input => " + _currentLine);
 }
 
@@ -110,11 +115,23 @@ void BitcoinExchange::checkValue(const std::string &value, const float limit) co
 
 	float floatValue;
 
-	if (std::istringstream(value) >> floatValue)
+	if (!(std::istringstream(value) >> floatValue))
 		throw BitcoinExchangeException("Error: bad input => " + _currentLine);
-	std::cout << floatValue << std::endl;
-	if (floatValue <= limit)
+	if (floatValue > limit)
 		throw BitcoinExchangeException("Error: bad input => " + _currentLine);
+	if (floatValue < 0)
+		throw BitcoinExchangeException("Error: not a positive number.");
+}
+
+float BitcoinExchange::getExchangeValue(const std::string &date) const
+{
+	for (std::map<std::string, float>::const_iterator itr = _exchangeMap.begin(); itr != _exchangeMap.end(); ++itr){
+		if (date == itr->first)
+			return itr->second;
+		if (date < itr->first)
+			return (--itr)->second;
+	}
+	return _exchangeMap.end()->second;
 }
 
 std::string BitcoinExchange::trimLine(const std::string &line)

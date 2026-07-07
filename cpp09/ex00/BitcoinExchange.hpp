@@ -4,6 +4,11 @@
 #include <map>
 #include <exception>
 #include <string>
+#include <climits>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 class BitcoinExchange {
 	private:
@@ -25,6 +30,7 @@ class BitcoinExchange {
 		void		checkDate(const std::string &date) const;
 		void		checkValue(const std::string &value, float limit) const;
 
+		float		getExchangeValue(const std::string &date) const;
 		static	std::string	trimLine(const std::string &line);
 
 		class BitcoinExchangeException : public std::exception {
