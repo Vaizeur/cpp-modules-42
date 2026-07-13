@@ -44,7 +44,7 @@ void	RPN::handleOperator(std::stack<int> &stack, char op)
 			break;
 		case '-':
 			res = n2 - n1;
-			break;;
+			break;
 		case '*':
 			res = n2 * n1;
 			break;
@@ -95,7 +95,7 @@ void RPN::calcul()
 		return;
 	}
 	if (stack.size() != 1){
-		std::cout << "Error" << std::endl;
+		std::cout << "Error : Does not contain a single element" << std::endl;
 		return ;
 	}
 	std::cout << stack.top() << std::endl;
