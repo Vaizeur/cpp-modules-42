@@ -12,10 +12,8 @@ int main(int argc, char  **argv)
 		PmergeMe algo(argc, argv);
 		algo.sort();
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
+	catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
 	}
-	
 	return (0);
 }

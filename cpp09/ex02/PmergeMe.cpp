@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-
 PmergeMe::PmergeMe(){}
 
 PmergeMe::PmergeMe(const int argc,char **argv) {
@@ -31,11 +30,58 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &other) {
 PmergeMe::~PmergeMe(){}
 
 template< typename T>
-int		PmergeMe::sortContainer(T &container) {
-	T win;
-	T looser;
+void	PmergeMe::sortPairs(T &pairs) {
+	if (pairs.size() <= 1)
+		return;
+	for (int i = 1; i < static_cast<int>(pairs.size()); i++) {
+		typename T::value_type currentPairs = pairs[i];
+		int j = i - 1;
+		while (j >= 0 && pairs[j].second > currentPairs.second) {
+			pairs[j + 1] = pairs[j];
+			j--;
+		}
+		pairs[j + 1] = currentPairs;
+	}
+}
 
-	return (0);
+template< typename T>
+void	PmergeMe::sortContainer(T &container) {
+	if (container.size() <= 1)
+		return;
+
+	bool dispatcherHandler = false;
+	const bool oddContainer = container.size() % 2 != 0;
+
+	int oddValue = 0;
+	if (oddContainer)
+		oddValue = container.back();
+	typename PairStorage<T>::type pairs;
+	for (size_t i = 0 ; i < container.size() - 1; i += 2){
+		const int left = container.at(i);
+		const int right = container.at(i + 1);
+
+		dispatcherHandler = left > right;
+		dispatcherHandler ?
+			pairs.push_back(std::make_pair(right, left)):
+			pairs.push_back(std::make_pair(left, right))
+		;
+	}
+
+	sortPairs(pairs);
+	T sortedContainer;
+	T waitingContainer;
+
+	sortedContainer.push_back(pairs[0].first);
+	sortedContainer.push_back(pairs[0].second);
+
+	for (size_t i = 1; i < pairs.size(); ++i){
+		sortedContainer.push_back(pairs[i].second);
+		waitingContainer.push_back(pairs[i].first);
+	}
+
+	//TODO: faire la suite de Jacobsthal
+
+	container = sortedContainer;
 }
 
 void PmergeMe::sort() {
@@ -43,14 +89,15 @@ void PmergeMe::sort() {
 	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
-	const int durationVec = sortContainer(_vec);
-	const int durationDeq = sortContainer(_deq);
+	sortContainer(_vec);
+	const int durationVec = 0;
+	//const int durationDeq = sortContainer(_deq);
 	std::cout << "After : ";
 	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	std::cout << "Time to process a range of " << _vec.size() << "elements with std::vector : "<< durationVec << "us" << std::endl;
-	std::cout << "Time to process a range of " << _deq.size() << "elements with std::deque : "<< durationDeq << "us" << std::endl;
+	//std::cout << "Time to process a range of " << _deq.size() << "elements with std::deque : "<< durationDeq << "us" << std::endl;
 }
 
 const char *PmergeMe::PmergeMeException::what() const throw (){
