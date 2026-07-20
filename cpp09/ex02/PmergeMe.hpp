@@ -44,8 +44,12 @@ class PmergeMe
 		template< typename T>
 		void		sortContainer(T &container);
 
-		template< typename T>
-		void		sortPairs(T &pairs);
+
+		template<typename T>
+		static void extractWinners(typename PairStorage<T>::type &pairs, T &winners);
+
+		template<typename T>
+		void rebuildPairs(T &sortedWinners, typename PairStorage<T>::type &pairs, typename PairStorage<T>::type &sortedPairs);
 
 		template< typename T, typename U>
 		T			generateJacobsthal(int size, U &pairs);

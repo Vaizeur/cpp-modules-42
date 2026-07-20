@@ -1,14 +1,12 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){}
-
 PmergeMe::PmergeMe(const int argc,char **argv) {
 	int value;
 	for (int i = 1 ; i < argc; i++) {
 		std::istringstream ss(argv[i]);
 		if (!(ss >> value && ss.eof()))
 			throw PmergeMeException("Error : invalid value " + std::string(argv[i]));
-		if (value <= 0)
+		if (value < 0)
 			throw PmergeMeException("Error : value must be non-negative");
 		_vec.push_back(value);
 		_deq.push_back(value);
@@ -29,24 +27,41 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &other) {
 
 PmergeMe::~PmergeMe(){}
 
-// TODO : A CHANGER !!
+template< typename T, typename U>
+void	PmergeMe::createPairs(T &container, U &pairs){
+	for (size_t i = 0 ; i < container.size() - 1; i += 2){
+		const int left = container.at(i);
+		const int right = container.at(i + 1);
+		left > right ?
+			pairs.push_back(std::make_pair(right, left)):
+			pairs.push_back(std::make_pair(left, right))
+		;
+	}
+}
+
 template< typename T>
-void	PmergeMe::sortPairs(T &pairs) {
-	if (pairs.size() <= 1)
-		return;
-	for (int i = 1; i < static_cast<int>(pairs.size()); i++) {
-		typename T::value_type currentPairs = pairs[i];
-		int j = i - 1;
-		while (j >= 0 && pairs[j].second > currentPairs.second) {
-			pairs[j + 1] = pairs[j];
-			j--;
+void	PmergeMe::extractWinners(typename PairStorage<T>::type &pairs, T &winners) {
+	for (size_t i = 0; i < pairs.size(); ++i)
+		winners.push_back(pairs[i].second);
+}
+
+template< typename T>
+void	PmergeMe::rebuildPairs(T &sortedWinners, typename PairStorage<T>::type &pairs, typename PairStorage<T>::type &sortedPairs) {
+	typename PairStorage<T>::type remaining = pairs;
+
+	for (typename T::iterator it = sortedWinners.begin(); it != sortedWinners.end(); ++it) {
+		for (typename PairStorage<T>::type::iterator pit = remaining.begin(); pit != remaining.end(); ++pit) {
+			if (pit->second == *it) {
+				sortedPairs.push_back(*pit);
+				remaining.erase(pit);
+				break;
+			}
 		}
-		pairs[j + 1] = currentPairs;
 	}
 }
 
 template <typename T , typename U>
-T	PmergeMe::generateJacobsthal(int size, U &pairs) {
+T		PmergeMe::generateJacobsthal(int size, U &pairs) {
 	(void) pairs;
 
 	typename ContainerConvert<U>::type jacob;
@@ -77,6 +92,17 @@ T	PmergeMe::generateJacobsthal(int size, U &pairs) {
 }
 
 template< typename T>
+void	PmergeMe::prepareContainer(T &sortedContainer, T& waitingContainer, typename PairStorage<T>::type &pairs){
+	sortedContainer.push_back(pairs[0].first);
+	sortedContainer.push_back(pairs[0].second);
+
+	for (size_t i = 1; i < pairs.size(); ++i){
+		sortedContainer.push_back(pairs[i].second);
+		waitingContainer.push_back(pairs[i].first);
+	}
+}
+
+template< typename T>
 void    PmergeMe::insertBinary(T &jacobsthal, T &sortedContainer, typename PairStorage<T>::type &pairs, bool oddContainer, int oddValue) {
 	for (typename T::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it) {
 		const int idx = *it;
@@ -93,49 +119,33 @@ void    PmergeMe::insertBinary(T &jacobsthal, T &sortedContainer, typename PairS
 }
 
 template< typename T>
-void	PmergeMe::prepareContainer(T &sortedContainer, T& waitingContainer, typename PairStorage<T>::type &pairs){
-	sortedContainer.push_back(pairs[0].first);
-	sortedContainer.push_back(pairs[0].second);
-
-	for (size_t i = 1; i < pairs.size(); ++i){
-		sortedContainer.push_back(pairs[i].second);
-		waitingContainer.push_back(pairs[i].first);
-	}
-}
-
-template< typename T, typename U>
-void	PmergeMe::createPairs(T &container, U &pairs){
-	bool dispatcherHandler = false;
-	for (size_t i = 0 ; i < container.size() - 1; i += 2){
-		const int left = container.at(i);
-		const int right = container.at(i + 1);
-
-		dispatcherHandler = left > right;
-		dispatcherHandler ?
-			pairs.push_back(std::make_pair(right, left)):
-			pairs.push_back(std::make_pair(left, right))
-		;
-	}
-}
-
-template< typename T>
 void	PmergeMe::sortContainer(T &container) {
 	if (container.size() <= 1)
 		return;
-	typename PairStorage<T>::type pairs;
-	const bool oddContainer = container.size() % 2 != 0;
-
+	T currentContainer = container;
+	const bool oddContainer = currentContainer.size() % 2 != 0;
 	int oddValue = 0;
-	if (oddContainer)
-		oddValue = container.back();
-	createPairs(container,pairs);
-	sortPairs(pairs);
+	if (oddContainer) {
+		oddValue = currentContainer.back();
+		currentContainer.pop_back();
+	}
+
+	typename PairStorage<T>::type pairs;
+	createPairs(currentContainer, pairs);
+
+	T winners;
+	extractWinners<T>(pairs, winners);
+
+	sortContainer(winners);
+	typename PairStorage<T>::type sortedPairs;
+	rebuildPairs(winners, pairs, sortedPairs);
+
 	T sortedContainer;
 	T waitingContainer;
+	prepareContainer(sortedContainer, waitingContainer, sortedPairs);
 
-	prepareContainer(sortedContainer, waitingContainer, pairs);
-	T jacobsthal = generateJacobsthal<T >(waitingContainer.size(), pairs);
-	insertBinary(jacobsthal,sortedContainer, pairs, oddContainer, oddValue);
+	T jacobsthal = generateJacobsthal<T>(waitingContainer.size(), sortedPairs);
+	insertBinary(jacobsthal, sortedContainer, sortedPairs, oddContainer, oddValue);
 	container = sortedContainer;
 }
 
@@ -163,4 +173,3 @@ const char *PmergeMe::PmergeMeException::what() const throw (){
 PmergeMe::PmergeMeException::PmergeMeException(const std::string &message) : _message(message) {}
 
 PmergeMe::PmergeMeException::~PmergeMeException() throw() {}
-
