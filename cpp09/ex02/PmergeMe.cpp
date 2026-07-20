@@ -66,9 +66,8 @@ T	PmergeMe::generateJacobsthal(int size, U &pairs)
 		int targetJacob = jacob[i] - 1;
 		if (targetJacob >= size)
 			targetJacob = size - 1;
-		for (int j = targetJacob; j > lastProcessed; --j) {
+		for (int j = targetJacob; j > lastProcessed; --j)
 			order.push_back(j);
-		}
 		lastProcessed = targetJacob;
 		if (lastProcessed >= size - 1)
 			break;
@@ -115,16 +114,16 @@ void	PmergeMe::sortContainer(T &container) {
 	}
 
 	T jacobsthal = generateJacobsthal<T >(waitingContainer.size(), pairs);
-
-	/*
-	std::cout << "LA SUITE " << std::endl;
-	for (typename T::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it)
-		std::cout << *it << std::endl;
-	std::cout << "FIN DE LA SUITE " << std::endl;
-	*/
-
-	//TODO: faire la suite de Jacobsthal
-
+	for (typename T::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it) {
+		int idx = *it;
+		int value = waitingContainer[idx];
+		typename T::iterator itToInsert = std::lower_bound(sortedContainer.begin(), sortedContainer.end(), value);
+		sortedContainer.insert(itToInsert, value);
+	}
+	if (oddContainer) {
+		typename T::iterator it = std::lower_bound(sortedContainer.begin(), sortedContainer.end(), oddValue);
+		sortedContainer.insert(it, oddValue);
+	}
 	container = sortedContainer;
 }
 

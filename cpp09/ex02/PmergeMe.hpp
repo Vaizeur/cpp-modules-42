@@ -6,6 +6,7 @@
 # include <deque>
 # include <sstream>
 # include <iostream>
+# include <algorithm>
 
 template<typename T>
 struct PairStorage;
