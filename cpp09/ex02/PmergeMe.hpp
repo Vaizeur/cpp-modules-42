@@ -7,6 +7,7 @@
 # include <sstream>
 # include <iostream>
 # include <algorithm>
+# include <sys/time.h>
 
 template<typename T>
 struct PairStorage;
@@ -37,13 +38,18 @@ struct ContainerConvert<std::deque<std::pair<int,int > > > {
 class PmergeMe
 {
 	private:
+		clock_t				_startTime;
+		clock_t				_endTime;
 		std::vector<int>	_vec;
 		std::deque<int>		_deq;
 		PmergeMe();
 
+		void	startTime();
+		void	endTime();
+		double	getTime() const;
+
 		template< typename T>
 		void		sortContainer(T &container);
-
 
 		template<typename T>
 		static void extractWinners(typename PairStorage<T>::type &pairs, T &winners);
@@ -70,7 +76,7 @@ class PmergeMe
 		~PmergeMe();
 
 		void	sort();
-
+		const std::vector<int>& getVector() const;
 		class PmergeMeException : public std::exception
 		{
 			private :
@@ -81,5 +87,7 @@ class PmergeMe
 				virtual const char* what() const throw();
 		};
 };
+
+std::ostream &operator<<(std::ostream &out, const PmergeMe &c);
 
 #endif

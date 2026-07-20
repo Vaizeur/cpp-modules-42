@@ -1,8 +1,10 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(const int argc,char **argv) {
+PmergeMe::PmergeMe(const int argc,char **argv) : _startTime(0), _endTime(0)
+{
 	int value;
-	for (int i = 1 ; i < argc; i++) {
+	for (int i = 1; i < argc; i++)
+	{
 		std::istringstream ss(argv[i]);
 		if (!(ss >> value && ss.eof()))
 			throw PmergeMeException("Error : invalid value " + std::string(argv[i]));
@@ -30,8 +32,8 @@ PmergeMe::~PmergeMe(){}
 template< typename T, typename U>
 void	PmergeMe::createPairs(T &container, U &pairs){
 	for (size_t i = 0 ; i < container.size() - 1; i += 2){
-		const int left = container.at(i);
-		const int right = container.at(i + 1);
+		const int left = container[i];
+		const int right = container[i + 1];
 		left > right ?
 			pairs.push_back(std::make_pair(right, left)):
 			pairs.push_back(std::make_pair(left, right))
@@ -149,21 +151,43 @@ void	PmergeMe::sortContainer(T &container) {
 	container = sortedContainer;
 }
 
+
+const std::vector<int>& PmergeMe::getVector() const {
+	return _vec;
+}
+
+void PmergeMe::startTime(){
+	_startTime = clock();
+}
+
+void PmergeMe::endTime(){
+	_endTime = clock();
+}
+
+double PmergeMe::getTime() const {
+	return (_endTime - _startTime) * 1000.0 / CLOCKS_PER_SEC;
+}
+
 void PmergeMe::sort() {
-	std::cout << "Before : ";
-	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	std::cout << "Before : " << *this << std::endl;
+	startTime();
 	sortContainer(_vec);
+	endTime();
+	const double durationVec = getTime();
+	startTime();
 	sortContainer(_deq);
-	const int durationVec = 0;
-	const int durationDeq = 0;
-	std::cout << "After : ";
-	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-	std::cout << "Time to process a range of " << _vec.size() << "elements with std::vector : "<< durationVec << "us" << std::endl;
-	std::cout << "Time to process a range of " << _deq.size() << "elements with std::deque : "<< durationDeq << "us" << std::endl;
+	endTime();
+	const double durationDeq = getTime();
+	std::cout << "After  : " << *this << std::endl;
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : "<< durationVec << "ms" << std::endl;
+	std::cout << "Time to process a range of " << _deq.size() << " elements with std::deque  : "<< durationDeq << "ms" << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& out, const PmergeMe& c) {
+	const std::vector<int>& vec = c.getVector();
+	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); ++it)
+		out << *it << ' ';
+	return out;
 }
 
 const char *PmergeMe::PmergeMeException::what() const throw (){
