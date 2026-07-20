@@ -29,6 +29,7 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &other) {
 
 PmergeMe::~PmergeMe(){}
 
+// TODO : A CHANGER !!
 template< typename T>
 void	PmergeMe::sortPairs(T &pairs) {
 	if (pairs.size() <= 1)
@@ -45,9 +46,7 @@ void	PmergeMe::sortPairs(T &pairs) {
 }
 
 template <typename T , typename U>
-
-T	PmergeMe::generateJacobsthal(int size, U &pairs)
-{
+T	PmergeMe::generateJacobsthal(int size, U &pairs) {
 	(void) pairs;
 
 	typename ContainerConvert<U>::type jacob;
@@ -60,7 +59,7 @@ T	PmergeMe::generateJacobsthal(int size, U &pairs)
 		jacob.push_back(nextValue);
 		nextValue = jacob[jacob.size()-1] + 2 * jacob[jacob.size()-2];
 	}
-	int lastProcessed = 0;
+	int lastProcessed = -1;
 
 	for (size_t i = 0; i < jacob.size(); i++) {
 		int targetJacob = jacob[i] - 1;
@@ -78,18 +77,35 @@ T	PmergeMe::generateJacobsthal(int size, U &pairs)
 }
 
 template< typename T>
-void	PmergeMe::sortContainer(T &container) {
-	if (container.size() <= 1)
-		return;
+void    PmergeMe::insertBinary(T &jacobsthal, T &sortedContainer, typename PairStorage<T>::type &pairs, bool oddContainer, int oddValue) {
+	for (typename T::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it) {
+		const int idx = *it;
+		int value = pairs[idx + 1].first;
+		int valuePairs = pairs[idx + 1].second;
+		typename T::iterator itEnd = std::find(sortedContainer.begin(), sortedContainer.end(), valuePairs);
+		typename T::iterator itToInsert = std::lower_bound(sortedContainer.begin(), itEnd, value);
+		sortedContainer.insert(itToInsert, value);
+	}
+	if (oddContainer) {
+		typename T::iterator it = std::lower_bound(sortedContainer.begin(), sortedContainer.end(), oddValue);
+		sortedContainer.insert(it, oddValue);
+	}
+}
 
+template< typename T>
+void	PmergeMe::prepareContainer(T &sortedContainer, T& waitingContainer, typename PairStorage<T>::type &pairs){
+	sortedContainer.push_back(pairs[0].first);
+	sortedContainer.push_back(pairs[0].second);
+
+	for (size_t i = 1; i < pairs.size(); ++i){
+		sortedContainer.push_back(pairs[i].second);
+		waitingContainer.push_back(pairs[i].first);
+	}
+}
+
+template< typename T, typename U>
+void	PmergeMe::createPairs(T &container, U &pairs){
 	bool dispatcherHandler = false;
-	const bool oddContainer = container.size() % 2 != 0;
-
-	int oddValue = 0;
-	if (oddContainer)
-		oddValue = container.back();
-	(void) oddValue;
-	typename PairStorage<T>::type pairs;
 	for (size_t i = 0 ; i < container.size() - 1; i += 2){
 		const int left = container.at(i);
 		const int right = container.at(i + 1);
@@ -100,30 +116,26 @@ void	PmergeMe::sortContainer(T &container) {
 			pairs.push_back(std::make_pair(left, right))
 		;
 	}
+}
 
+template< typename T>
+void	PmergeMe::sortContainer(T &container) {
+	if (container.size() <= 1)
+		return;
+	typename PairStorage<T>::type pairs;
+	const bool oddContainer = container.size() % 2 != 0;
+
+	int oddValue = 0;
+	if (oddContainer)
+		oddValue = container.back();
+	createPairs(container,pairs);
 	sortPairs(pairs);
 	T sortedContainer;
 	T waitingContainer;
 
-	sortedContainer.push_back(pairs[0].first);
-	sortedContainer.push_back(pairs[0].second);
-
-	for (size_t i = 1; i < pairs.size(); ++i){
-		sortedContainer.push_back(pairs[i].second);
-		waitingContainer.push_back(pairs[i].first);
-	}
-
+	prepareContainer(sortedContainer, waitingContainer, pairs);
 	T jacobsthal = generateJacobsthal<T >(waitingContainer.size(), pairs);
-	for (typename T::iterator it = jacobsthal.begin(); it != jacobsthal.end(); ++it) {
-		int idx = *it;
-		int value = waitingContainer[idx];
-		typename T::iterator itToInsert = std::lower_bound(sortedContainer.begin(), sortedContainer.end(), value);
-		sortedContainer.insert(itToInsert, value);
-	}
-	if (oddContainer) {
-		typename T::iterator it = std::lower_bound(sortedContainer.begin(), sortedContainer.end(), oddValue);
-		sortedContainer.insert(it, oddValue);
-	}
+	insertBinary(jacobsthal,sortedContainer, pairs, oddContainer, oddValue);
 	container = sortedContainer;
 }
 
@@ -133,14 +145,15 @@ void PmergeMe::sort() {
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	sortContainer(_vec);
+	sortContainer(_deq);
 	const int durationVec = 0;
-	//const int durationDeq = sortContainer(_deq);
+	const int durationDeq = 0;
 	std::cout << "After : ";
 	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	std::cout << "Time to process a range of " << _vec.size() << "elements with std::vector : "<< durationVec << "us" << std::endl;
-	//std::cout << "Time to process a range of " << _deq.size() << "elements with std::deque : "<< durationDeq << "us" << std::endl;
+	std::cout << "Time to process a range of " << _deq.size() << "elements with std::deque : "<< durationDeq << "us" << std::endl;
 }
 
 const char *PmergeMe::PmergeMeException::what() const throw (){

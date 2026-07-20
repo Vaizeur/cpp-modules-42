@@ -50,6 +50,15 @@ class PmergeMe
 		template< typename T, typename U>
 		T			generateJacobsthal(int size, U &pairs);
 
+		template< typename T>
+		void	insertBinary(T &jacobsthal, T &sortedContainer,typename PairStorage<T>::type &pairs, bool oddContainer, int oddValue);
+
+		template< typename T>
+		static void	prepareContainer(T &sortedContainer, T& waitingContainer,  typename PairStorage<T>::type &pairs);
+
+		template< typename T, typename U>
+		static void createPairs(T &container, U &pairs);
+
 	public:
 		PmergeMe(int argc, char **argv);
 		PmergeMe(const PmergeMe &other);
