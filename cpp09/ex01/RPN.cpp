@@ -28,7 +28,7 @@ void	RPN::checkOverflow(long long res)
 		throw OperatorException("Error : Overflow detected");	
 }
 
-void	RPN::handleOperator(std::stack<int> &stack, char op)
+void	RPN::handleOperator(std::stack<int, std::list<int> > &stack, char op)
 {
 	if (stack.size() < 2)
 		throw OperatorException("Error : Not valid stack size for operation");
@@ -61,7 +61,7 @@ void	RPN::handleOperator(std::stack<int> &stack, char op)
 void RPN::calcul()
 {
 	bool	delimChecker = true;
-	std::stack<int>	stack;
+	std::stack<int, std::list<int> >	stack;
 	for (std::string::iterator it = _expr.begin(); it != _expr.end() ; it++){
 		if (*it == ' '){
 			delimChecker = true;

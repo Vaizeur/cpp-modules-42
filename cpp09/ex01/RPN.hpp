@@ -4,13 +4,14 @@
 # include <iostream>
 # include <stack>
 # include <limits.h>
+# include <list>
 
 class RPN
 {
 	private:
 		RPN();
 		std::string		_expr;
-		void	handleOperator(std::stack<int> &stack, char op);
+		void	handleOperator(std::stack<int, std::list<int> > &stack, char op);
 		bool	isOperator(char c);
 		void	checkOverflow(long long res);
 	public:
